@@ -29,7 +29,7 @@ do
 	echo "for:${n}"
 done
 
-cat 20170331.txt | while read line
+cat txt/20170331.txt | while read line
 do
 	if [ "${line}" == "a" ]
 	then
