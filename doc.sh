@@ -1,5 +1,6 @@
 #/bin/bash
 
+echo "输入参数：${1}"
 array=(11 22 33 44)
 echo ${array[*]}
 echo ${#array[@]}
@@ -9,7 +10,7 @@ do
 	echo "for:${n}"
 done
 
-cat 20170331.txt | while read line
+cat ./txt/20170331.txt | while read line
 do
 	if [ "${line}" == "a" ]
 	then
@@ -28,3 +29,9 @@ do
 	fi
 	
 done
+
+demoFunc() {
+	echo "echo a demo func"
+}
+
+demoFunc

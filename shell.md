@@ -106,3 +106,23 @@ done
 |------|:---:|
 |$(())|$((1+1)),$((i+1))|
 |$[]|$[1+1]|
+
+#### 函数
+
+```shell
+#/bin/bash
+demoFunc() {
+	echo "echo a demo func"
+}
+
+demoFunc
+```
+
+#### 传入参数
+
+> sh shell.sh a
+
+```shell
+#/bin/bash
+echo $1
+```
