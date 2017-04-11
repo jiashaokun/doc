@@ -79,4 +79,4 @@ hello_SOURCES=hello.c　　//表示生成可执行应用程序所用的源文件
 8. 使用Makefile编译代码  make
 9. ./hello 执行已编译文件
 
-![Aaron Swartz]
+![Aaron Swartz](https://github.com/jiashaokun/doc/blob/master/txt/auto.png)
