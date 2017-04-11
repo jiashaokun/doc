@@ -24,6 +24,9 @@
 ```shell
 target ... : prerequisites ...
 command
+
+tag:	#标签
+commend	#shell命令
 ```
 
 >* target 可以是一个目标文件，也可以是一个执行文件，也可以是一个标签。
@@ -40,8 +43,71 @@ mian.o : mian.c print.h
 	gcc -c main.c
 print.o : print.c print.h
 	#gcc -c print.c 自动推导
+
+#标签格式
 clean: #标签定义
 	rm helloworld main.o print.o
+```
+>上述代码是手动依赖，那如果需要依赖很多个文件是不是优点头疼
+
+```shell
+gcc -M file #命令行执行,查询main.c 的文件依赖
+#gcc -MM file 或者试试这个
+```
+<img src="https://github.com/jiashaokun/doc/blob/master/txt/cc-m.jpg" width = "490" height = "151" align=center />
+
+>在规则中使用通配符
+
+```shell
+clean:
+	cat files #还可以加入其他linux命令
+	rm -rf *.swp
+```
+
+**显示命令**
+>上述Makefile中的命令会被输出到显示屏上，可以设置不显示
+
+1. 命令行前加 @ 符号
+```shell
+clean:
+	@rm -rf *.swp
+```
+2. make -s
+
+### 文件搜寻
+
+**Makefile 中增加目录设置**
+
+>在工程目录中，有大量的源文件是分类存放到不同目录的，所以在写Makefile时，需要寻找依赖关系时可以在文件前加上路径，VPATH=... ，如果没有指定路径，make只会在当前目录查找依赖文件和目标文件。
+
+```shell
+VPATH = src:../headers
+```
+
+**使用make的 vpath （小写）关键字**
+
+vpath <pattern> <directories>
+pattern:符合模式
+directories:文件指定搜索目录
+
+```shell
+vpath %.h ../headers #该语句表示，要求make在“../headers”目录下搜索所有以“.h”结尾的文件。（如果文件在当前目录没有找到的话）
+```
+
+我们可以连续地使用vpath语句，以指定不同搜索策略。
+>其表示“.c”结尾的文件，先在“foo”目录，然后是“bl,最后是“bar”
+
+```shell
+vpath %.c foo
+vpath %.c blish
+vpath %.c bar
+```
+
+>或者：表示“.c”结尾的文件，先在“foo”目录，然后是“bar”目录，最后才是“bli
+
+```shell
+vpath %.c foo:bar #由此可见，目录间隔符号，使用英文冒号间隔
+vpath %.c blish
 ```
 
 
