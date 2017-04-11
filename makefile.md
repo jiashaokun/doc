@@ -17,7 +17,10 @@
 >* 根据依赖关系决定哪些目标要重新生成
 >* 执行命令
 
+
 ### 一 手动生成方式
+
+>最简单的理解Makefile文件书写就是tag+shell命令的组装
 
 **书写规则**
 
@@ -48,6 +51,8 @@ print.o : print.c print.h
 clean: #标签定义
 	rm helloworld main.o print.o
 ```
+
+**自动生成依赖**
 >上述代码是手动依赖，那如果需要依赖很多个文件是不是优点头疼
 
 ```shell
@@ -56,6 +61,15 @@ gcc -M file #命令行执行,查询main.c 的文件依赖
 ```
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/cc-m.jpg" width = "490" height = "151" align=center />
 
+**Makefile嵌套**
+>在工程中Makefile文件是根据目录走的，这样有助于Makefile的维护，所以就会产生多个目录中的Makefile的嵌套
+
+```shell
+system:
+	cd dir && $(MAKE)
+#根目录的Makefile文件，先进入 dir目录 再执行make命令
+```
+
 >在规则中使用通配符
 
 ```shell
@@ -63,6 +77,10 @@ clean:
 	cat files #还可以加入其他linux命令
 	rm -rf *.swp
 ```
+
+>另外，使用 make -w 可以看到make命令执行的过程
+
+<img src="https://github.com/jiashaokun/doc/blob/master/txt/make-w.jpg" width = "326" height = "105" align=center />
 
 **显示命令**
 >上述Makefile中的命令会被输出到显示屏上，可以设置不显示
