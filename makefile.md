@@ -3,7 +3,7 @@
 ### 生成方式
 
 1. 手动生成Makefile
-2. 自动生成Makefile
+2. 通过autoconf自动生成Makefile
 
 ### make 的工作方式
 
@@ -47,7 +47,36 @@ clean: #标签定义
 
 ### 二 自动生成方式
 
-1. 运行autoscan生成configure.in
-2. 重命名configure.scan 为 configure.in
-3. 修改 configure.in 文件
-4. 新建makefile.am文件
+>Autoconf 是一个用于生成可以自动地配置软件源码包，用以适应多种UNIX类系统的shell脚本工具，其中autoconf依赖软件 m4，便于生成脚本。
+autoscan,autoconf,automake 配合生成Makefile。
+
+>automake是一个从Makefile.am文件自动生成Makefile.in的工具。为了生成Makefile.in，automake还需用到perl，由于automake创建的发布完全遵循GNU标准，所以在创建中不需要perl。libtool是一款方便生成各种程序库的工具。
+
+**步骤**
+1. 创建目录，生成一个hello.c
+2. 执行 autoscan 命令，生成configure.in模版文件 configure.scan
+3. 编辑configure.in文件
+```shell
+#AC_PREREQ() #版本号
+AC_INIT() #可执行文件
+AM_INIT_AUTOMAKE() #指示可执行文件于版本号
+#AC_CONFIG_SRCDIR() #检验文件是否缺失
+#AC_CONFIG_HEADERS() 检查头文件config.h
+AC_PROG_CC #检查C语言编译程序是否存在
+AC_OUTPUT(Makefile) #最终输出的文件
+
+#每个configure.scan 文件都是以AC_INT 开头 AC_OUTPUT 结尾
+```
+4. 执行 aclocal 和 autoconf 生成 aclocal.m4 和 configure
+5. 编辑 Makefile.am文件
+```shell
+UTOMAKE_OPTIONS=foreign  #不检查NEWS，AUTHOR，ChangeLog
+bin_PROGRAMS=hello   #要生成的可执行应用程序文件
+hello_SOURCES=hello.c　　//表示生成可执行应用程序所用的源文件
+```
+6. 运行automake
+7. 执行./configure 生成Makefile文件
+8. 使用Makefile编译代码  make
+9. ./hello 执行已编译文件
+
+![Aaron Swartz]
