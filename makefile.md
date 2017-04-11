@@ -20,7 +20,7 @@
 
 ### 一 手动生成方式
 
->最简单的理解Makefile文件书写就是tag+shell命令的组装
+>最简单的理解Makefile文件书写就是tag+shell命令的组装,不一定文件一定要是Makefile，比如可以 make -f aa.txt
 
 **书写规则**
 
