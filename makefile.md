@@ -80,4 +80,3 @@ hello_SOURCES=hello.c　　//表示生成可执行应用程序所用的源文件
 9. ./hello 执行已编译文件
 
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/auto.png" width = "320" height = "570" align=center />
-![Aaron Swartz](https://github.com/jiashaokun/doc/blob/master/txt/auto.png)
