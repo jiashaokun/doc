@@ -28,3 +28,6 @@
 
 6. 个人中心页面
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/8.%20ucenter.png" width = "260" height = "255" align=center />
+
+
+页面逻辑流程图
