@@ -31,3 +31,4 @@
 
 
 页面逻辑流程图
+<img src="https://github.com/jiashaokun/doc/blob/master/txt/11.png" width = "1180" height = "280" align=center />
