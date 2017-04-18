@@ -2,6 +2,7 @@
 ###产品流程图
 
 1. 登陆/注册
+
 登陆
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/1.%20index.png" width = "260" height = "255" align=center />
 
@@ -12,6 +13,7 @@
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/3.%20user_info_save.png" width = "260" height = "255" align=center />
 
 3. 学校专业列表页面（可点击返回专业类别列表页面）
+
 学校专业列表
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/4.%20major_list.png" width = "260" height = "255" align=center />
 
