@@ -131,10 +131,15 @@ vpath %.c blish
 
 ### 二 自动生成方式
 
->Autoconf 是一个用于生成可以自动地配置软件源码包，用以适应多种UNIX类系统的shell脚本工具，其中autoconf依赖软件 m4，便于生成脚本。
-autoscan,autoconf,automake 配合生成Makefile。
+>autoscan,aclocal,autoconf,automake 配合生成Makefile。
 
->automake是一个从Makefile.am文件自动生成Makefile.in的工具。为了生成Makefile.in，automake还需用到perl，由于automake创建的发布完全遵循GNU标准，所以在创建中不需要perl。libtool是一款方便生成各种程序库的工具。
+>Autoscan autoscan命令通常在生成Makefile文件中以检查基础配置为主要内容，通过aotuscan命令生成configure.scan,它是configure.ac（configure.in）的一个雏形。
+
+>Aclocal 是一个perl脚本程序，用于为autoconf提供模版支持。aclocal 命令生成aclocal.m4
+
+>Autoconf 依赖aclocal.m4 是一个用于生成可以自动地配置软件源码(configure)的工具,Autoconf产生的配置脚本在使用时不需要用户手动干预。
+
+>Automake 是一个从Makefile.am(人为创建) 文件自动生成Makefile.in的工具。用于生成最终编译文件。
 
 **步骤**
 1. 创建目录，生成一个hello.c
@@ -156,11 +161,20 @@ AC_OUTPUT(Makefile) #最终输出的文件
 ```shell
 UTOMAKE_OPTIONS=foreign  #不检查NEWS，AUTHOR，ChangeLog
 bin_PROGRAMS=hello   #要生成的可执行应用程序文件
-hello_SOURCES=hello.c　　//表示生成可执行应用程序所用的源文件
+hello_SOURCES=hello.c　　//生成"hello" 可执行应用程序 所用的 源文件
 ```
 6. 运行automake
+```shell
+其中可能会遇到以下问题信息, 创建相关文件即可
+
+Makefile.am: required file `./NEWS' not found
+Makefile.am: required file `./README' not found
+Makefile.am: required file `./AUTHORS' not found
+Makefile.am: required file `./ChangeLog' not found
+```
+
 7. 执行./configure 生成Makefile文件
-8. 使用Makefile编译代码  make
+8. 执行make命令使用Makefile编译代码
 9. ./hello 执行已编译文件
 
 <img src="https://github.com/jiashaokun/doc/blob/master/txt/auto.png" width = "320" height = "570" align=center />
