@@ -159,8 +159,8 @@ AC_OUTPUT(Makefile) #最终输出的文件
 4. 执行 aclocal 和 autoconf 生成 aclocal.m4 和 configure
 5. 编辑 Makefile.am文件
 ```shell
-UTOMAKE_OPTIONS=foreign  #不检查NEWS，AUTHOR，ChangeLog
-bin_PROGRAMS=hello   #要生成的可执行应用程序文件
+UTOMAKE_OPTIONS=foreign  #提供了三种软件等级：foreign、gnu和gnits，默认等级为gnu。foreign 只检查必要文件
+bin_PROGRAMS=hello   #要生成的可执行应用程序文件
 hello_SOURCES=hello.c　　//生成"hello" 可执行应用程序 所用的 源文件
 ```
 6. 运行automake
