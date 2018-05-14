@@ -30,3 +30,6 @@
 
 >-preset: 调节编码速率和质量的平衡(有ultrafast、superfast、veryfast、faster、fast、medium、slow、slower、veryslow、placebo这10个选项，从快到慢)
 >-tune: 主要配合视频类型和视频优化的参数，
+
+### 参考
+> [https://wenku.baidu.com/view/f4e48c087fd5360cba1adbba.html]
