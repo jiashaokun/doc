@@ -42,8 +42,16 @@
 
 ### 按时长分割视频
 ```shell
-ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4
+ffmpeg -ss 60 -t 60  -i input.mp4 -c copy out-2.mp4
 ```
 > * [-ss 开始时间的秒数 或者分钟数(00:01:00) -t 切割 n 秒长的视频，或者截止多长时间的视频(00:01:00)]
-> * ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4时间
-> * ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4
+
+```shell
+ffmpeg -re -i  input.mp4 -c copy -f segment -segment_format mp4 -segment_times 3,6,9 out.mp4
+```
+> * [视频按时间点切割 3,6,9  是 3 秒 6 秒 9 秒 分别切割出一段视频]
+
+### 视频 mp4 转 ts
+```python
+subprocess.call(["ffmpeg", "-y", "-i", "concat:test.ts|test1.ts", "-acodec", "copy", "-vcodec", "copy", "-absf", "aac_adtstoasc", "out.mp4"])
+```
