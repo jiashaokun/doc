@@ -5,9 +5,8 @@
 
 [命令]
 ```shell
-ffmpeg -i video.mp4 
+ffmpeg -i video.mp4  # [video.mp4] 是视频文件
 ```
-> * [video.mp4] 是视频文件
 
 >ffmpeg -i test.flv 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//
 
