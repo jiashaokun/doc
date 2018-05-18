@@ -38,7 +38,9 @@
 
 >ffmpeg -i vodeo_input.mp4 -s 640x480 -b 2000k -c:a copy video_output.mp4 [-s 视频分辨率 -b 码率（rate） -c:a copy代表复制原视频的视频和音频编码不做任何改， 最后输出output文件]切割
 
-## 视频分割
+## 视频分割 && 合并
+> * 操作流程 [1. 视频分割成一小段mp4格式小视频 2. 将小视频转为 ts 格式小视频 3. 合并所有ts小视频为 mp4 格式视频]
+## 视频分割 && 合并
 
 ### 按时长分割视频
 ```shell
@@ -51,7 +53,11 @@ ffmpeg -re -i  input.mp4 -c copy -f segment -segment_format mp4 -segment_times 3
 ```
 > * [视频按时间点切割 3,6,9  是 3 秒 6 秒 9 秒 分别切割出一段视频]
 
-### 视频 mp4 转 ts
+### 视频 mp4 转 ts格式
+```python
+subprocess.call(["ffmpeg", "-y", "-i", "/Users/master/yx/yxp/web/video/online/test1.mp4", "-vcodec", "copy", "-acodec", "copy", "-vbsf", "h264_mp4toannexb", "/Users/master/yx/yxp/web/video/online/test1.ts"])
+```
+### 视频合并  多个ts文件视频 合并成 mp4
 ```python
 subprocess.call(["ffmpeg", "-y", "-i", "concat:test.ts|test1.ts", "-acodec", "copy", "-vcodec", "copy", "-absf", "aac_adtstoasc", "out.mp4"])
 ```
