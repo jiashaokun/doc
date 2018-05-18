@@ -4,7 +4,11 @@
 ## 查看视频信息
 
 [命令]
->ffmpeg -i video.mp4 [video.mp4] 是视频文件
+```shell
+ffmpeg -i video.mp4 
+```
+> * [video.mp4] 是视频文件
+
 >ffmpeg -i test.flv 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//
 
 > ffprobe -v quiet -print_format json -show_format -show_streams zs_257573_HSCJC_XC_IMG.mp4
