@@ -6,11 +6,11 @@
 [命令]
 ```shell
 ffmpeg -i video.mp4  # [video.mp4] 是视频文件
+
+ffmpeg -i test.flv 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//   # 获取视频文件播放时长
+
+ffprobe -v quiet -print_format json -show_format -show_streams zs_257573_HSCJC_XC_IMG.mp4 # 获取视频文件全部信息
 ```
-
->ffmpeg -i test.flv 2>&1 | grep 'Duration' | cut -d ' ' -f 4 | sed s/,//
-
-> ffprobe -v quiet -print_format json -show_format -show_streams zs_257573_HSCJC_XC_IMG.mp4
 
 ## 转换视频分辨率
 
