@@ -35,3 +35,15 @@
 
 ### 参考
 > [https://wenku.baidu.com/view/f4e48c087fd5360cba1adbba.html]
+
+>ffmpeg -i vodeo_input.mp4 -s 640x480 -b 2000k -c:a copy video_output.mp4 [-s 视频分辨率 -b 码率（rate） -c:a copy代表复制原视频的视频和音频编码不做任何改， 最后输出output文件]切割
+
+## 视频分割
+
+### 按时长分割视频
+```shell
+ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4
+```
+> * [-ss 开始时间的秒数 或者分钟数(00:01:00) -t 切割 n 秒长的视频，或者截止多长时间的视频(00:01:00)]
+> * ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4时间
+> * ffmpeg -ss 60 -t 60  -i 640X480_600_33521499_401181_1525176287.mp4 -c copy out-2.mp4
