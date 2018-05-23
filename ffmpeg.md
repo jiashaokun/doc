@@ -65,6 +65,11 @@ ffmpeg -re -i  input.mp4 -c copy -f segment -segment_format mp4 -segment_times 3
 ```
 > * [视频按时间点切割 3,6,9  是 3 秒 6 秒 9 秒 分别切割出一段视频]
 
+```shell
+ffmpeg -i 33521499_401181_1525176287.mp4 -f segment -strftime 1 -segment_time 60 -segment_format mp4 out%Y-%m-%d_%H-%M-%S.mp4
+```
+> * [按分钟切割]
+
 ### 视频 mp4 转 ts格式
 ```python
 subprocess.call(["ffmpeg", "-y", "-i", "/Users/master/yx/yxp/web/video/online/test1.mp4", "-vcodec", "copy", "-acodec", "copy", "-vbsf", "h264_mp4toannexb", "/Users/master/yx/yxp/web/video/online/test1.ts"])
