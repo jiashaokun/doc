@@ -3,6 +3,8 @@
 
 >GPU查看命令 watch -n 10 nvidia-smi
 
+[http://www.cnblogs.com/wainiwann/p/4128154.html]
+
 ## 查看视频信息
 
 [命令]
@@ -71,3 +73,14 @@ subprocess.call(["ffmpeg", "-y", "-i", "/Users/master/yx/yxp/web/video/online/te
 ```python
 subprocess.call(["ffmpeg", "-y", "-i", "concat:test.ts|test1.ts", "-acodec", "copy", "-vcodec", "copy", "-absf", "aac_adtstoasc", "out.mp4"])
 ```
+
+### 视频切割并生成ts文件
+```shell
+ffmpeg -i input.mp4 -c:v libx264 -c:a copy  -hls_time 60 -hls_list_size 0 -f hls output.m3u8
+```
+> * hls_time 设置每片的长度，默认值为2。单位为秒
+> * hls_list_size 设置播放列表保存的最多条目，设置为0会保存有所片信息，默认值为5
+> * hls_wrap  设置多少片之后开始覆盖，如果设置为0则不会覆盖，默认值为0项能够避免在磁盘上存储过多的片，而且能够限制写入磁盘的最多的片的数量
+> * start_number 设置播放列表中sequence number的值为number，默认值为0 提示：播放列表的sequence number 对每个segment来说都必须是唯一的，而且它不能和片的文件名混淆，因为在，如果指定了“wrap”选项文件名会出现重复使用
+
+> * -threads 1 使用线程数 
