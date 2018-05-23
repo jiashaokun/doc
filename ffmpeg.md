@@ -1,5 +1,6 @@
 ## 命令列表
 >ffmpeg -formats | less
+>GPU查看命令 watch -n 10 nvidia-smi
 
 ## 查看视频信息
 
