@@ -17,6 +17,11 @@ ffprobe -v quiet -print_format json -show_format -show_streams zs_257573_HSCJC_X
 [命令]
 >ffmpeg -i vodeo_input.mp4 -s 640x480 -b 2000k -c:a copy video_output.mp4 [-s 视频分辨率 -b 码率（rate） -c:a copy代表复制原视频的视频和音频编码不做任何改， 最后输出output文件]
 
+```shell
+# 使用gpu
+ffmpeg -i input.mp4 -c:v h264_nvenc -s 640x480 -b:v 600k output.mp4
+```
+
 ## 文件类型设置
 
 [命令]
