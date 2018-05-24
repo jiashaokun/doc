@@ -78,6 +78,10 @@ subprocess.call(["ffmpeg", "-y", "-i", "/Users/master/yx/yxp/web/video/online/te
 ```python
 subprocess.call(["ffmpeg", "-y", "-i", "concat:test.ts|test1.ts", "-acodec", "copy", "-vcodec", "copy", "-absf", "aac_adtstoasc", "out.mp4"])
 ```
+```shell
+# list.txt 内容 file 'out-1.mp4'
+ffmpeg -f concat -i list.txt -c copy concat.mp4
+```
 
 ### 视频切割并生成ts文件
 ```shell
