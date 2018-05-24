@@ -89,3 +89,8 @@ ffmpeg -i input.mp4 -c:v libx264 -c:a copy  -hls_time 60 -hls_list_size 0 -f hls
 > * start_number 设置播放列表中sequence number的值为number，默认值为0 提示：播放列表的sequence number 对每个segment来说都必须是唯一的，而且它不能和片的文件名混淆，因为在，如果指定了“wrap”选项文件名会出现重复使用
 
 > * -threads 1 使用线程数 
+
+### 视频切割 按每分钟切割
+```shell
+ffmpeg  -i input.mp4 -c copy -map 0 -f segment -segment_time 60 out_mp4_%d.mp4
+```
