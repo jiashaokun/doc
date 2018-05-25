@@ -1,4 +1,4 @@
-# 项目部署
+# FFmpeg 安装步骤 
 ------
 > * 硬件环境：
         ** NVIDIA GPU （Tesla P100）
