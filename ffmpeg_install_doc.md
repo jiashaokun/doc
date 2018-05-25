@@ -7,8 +7,6 @@
 > * 环境设置
         ** pip 10.0.1
         ** Python2.7 + Requests + ffmpeg-4.0
-> * 代码仓库
-        ** https://svn.xin.com/xin/ckvideo.xin.com
 
 ## 安装步骤
 
