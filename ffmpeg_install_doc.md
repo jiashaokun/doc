@@ -63,10 +63,11 @@
 ```
 
 
+
 > * 安装依赖包
 ```shell
 vim /etc/ld.so.conf
-将 /usr/local/lib 直接放到最后一行保存退出
+# 将 /usr/local/lib 直接放到最后一行保存退出
 ldconfig
 
 # 执行完毕后 ffmpeg 应该已经没问题了
@@ -78,6 +79,20 @@ vim /etc/profile
 # 底部
 export PATH="$PATH:/usr/local/ffmpeg/bin"
 
-保存退出
-执行 source /ect/profile
+# 保存退出
+# 执行
+    source /ect/profile
+```
+
+### 错误解决
+> * 编译FFmpeg是，若出现如下错误
+```shell
+ERROR: cuda requested, but not all dependencies are satisfied: ffnvcodec
+```
+```shell
+    git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+    cd nv-codec-headers.git
+    # make 和 make install 是出现提示不用管
+    make
+    make install
 ```
