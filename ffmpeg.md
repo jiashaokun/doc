@@ -103,3 +103,7 @@ ffmpeg  -i input.mp4 -c copy -map 0 -f segment -segment_time 60 out_mp4_%d.mp4
 ```shell
 ffmpeg -i input_file [-i inputfile] -c copy -map 0 -f segment -segment_time 秒 输出_目录/文件名称_%d.mp4
 ```
+### 硬编码
+```shell
+ffmpeg -i input_file.mp4 -c:v h264_nvenc -s 1280x720 -b:v 2000k out.mp4
+```
