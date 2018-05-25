@@ -96,3 +96,14 @@ ERROR: cuda requested, but not all dependencies are satisfied: ffnvcodec
     make
     make install
 ```
+### 执行完毕测试
+```shell
+ffmpeg -i 64862406_525441_1526891425.mp4  -c:v h264_nvenc -s 1280x720 -b:v 1200k out.mp4
+# 出现如下信息
+ffmpeg: error while loading shared libraries: libnppig.so.9.2: cannot open shared object file: No such file or directory
+
+export LD_LIBRARY_PATH=/usr/local/cuda/lib64
+
+# 再次执行
+ffmpeg -i 64862406_525441_1526891425.mp4  -c:v h264_nvenc -s 1280x720 -b:v 1200k out.mp4
+```
