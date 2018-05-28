@@ -106,5 +106,7 @@ ffmpeg -i input_file [-i inputfile] -c copy -map 0 -f segment -segment_time 秒 
 ### 硬编码 
 > * [需要机器支持GPU 并支持 NVIDIA 显卡驱动和 CUDA] 
 ```shell
-ffmpeg -i input_file.mp4 -c:v h264_nvenc -s 1280x720 -b:v 2000k out.mp4
+ffmpeg -y -i input_file.mp4 -c:v h264_nvenc -s 1280x720 -b:v 2000k out.mp4
+
+ffmpeg -y -i input.mp4 -c:v h264_nvenc -vcodec h264_nvenc -s 1280x720 -b:v 2000k -f mp4 out.mp4
 ```
