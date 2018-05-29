@@ -110,3 +110,9 @@ ffmpeg -y -i input_file.mp4 -c:v h264_nvenc -s 1280x720 -b:v 2000k out.mp4
 
 ffmpeg -y -i input.mp4 -c:v h264_nvenc -vcodec h264_nvenc -s 1280x720 -b:v 2000k -f mp4 out.mp4
 ```
+### 选择使用GPU
+```python
+    r = random.randint(0,1)
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+    os.environ["CUDA_VISIBLE_DEVICES"] = str(r)
+```
