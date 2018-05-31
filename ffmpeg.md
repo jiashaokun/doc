@@ -103,7 +103,7 @@ ffmpeg  -i input.mp4 -c copy -map 0 -f segment -segment_time 60 out_mp4_%d.mp4
 ```shell
 ffmpeg -i input_file [-i inputfile] -c copy -map 0 -f segment -segment_time 秒 输出_目录/文件名称_%d.mp4
 ```
-### 硬编码 
+### 硬编码 [url:https://developer.nvidia.com/ffmpeg]
 > * [需要机器支持GPU 并支持 NVIDIA 显卡驱动和 CUDA] 
 ```shell
 ffmpeg -y -i input_file.mp4 -c:v h264_nvenc -s 1280x720 -b:v 2000k out.mp4
@@ -115,4 +115,11 @@ ffmpeg -y -i input.mp4 -c:v h264_nvenc -vcodec h264_nvenc -s 1280x720 -b:v 2000k
     r = random.randint(0,1)
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
     os.environ["CUDA_VISIBLE_DEVICES"] = str(r)
+```
+> * 使用 GPU 硬编码
+```shell
+# 1 to 1
+ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <input.mp4> -vf scale_npp=1280:720 -c:v h264_nvenc <output.mp4>
+# 1 to n
+ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <input.mp4> -vf scale_npp=1280:720 -vcodec h264_nvenc <output0.mp4> -vf scale_npp 640:480 -vcodec h264_nvenc <output1.mp4>
 ```
