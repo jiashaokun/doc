@@ -124,6 +124,15 @@ ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <input.mp4> -vf scale_npp=1280:720 -c:v
 ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <input.mp4> -vf scale_npp=1280:720 -vcodec h264_nvenc <output0.mp4> -vf scale_npp 640:480 -vcodec h264_nvenc <output1.mp4>
 ```
 
+### 视频加图片水印
+```shell
+# 使用 硬编码  50:50（x:y 坐标）
+ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" -c:v h264_nvenc output.mp4
+
+# 正常编码
+ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" h264_nvenc output.mp4
+```
+
 # FFmpeg 音频
 
 ### ffmpeg 视频静音
