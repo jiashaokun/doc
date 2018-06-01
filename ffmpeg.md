@@ -134,6 +134,9 @@ ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" outp
 
 # overlay=x=main_w-120:y=40  （logo在视频位置距离：logo左边距,距离视频 右边距 120 px logo 距离顶部 40 px）
 ffmpeg -y -i cs_16794_FDJC.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=x=main_w-120:y=40[out]" output.mp4
+
+# 插入多张图
+ffmpeg -y -i cs_16794_FDJC.mp4 -vf "movie=logo.png [wm]; movie=logo.png[wm1];[c][wm]overlay=x=100:y=100 [out];[out][wm1] overlay=x=400:y=400" -f mp4 logo.mp4
 ```
 
 # FFmpeg 音频
