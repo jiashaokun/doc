@@ -130,7 +130,7 @@ ffmpeg -hwaccel cuvid -c:v h264_cuvid -i <input.mp4> -vf scale_npp=1280:720 -vco
 ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" -c:v h264_nvenc output.mp4
 
 # 正常编码
-ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" h264_nvenc output.mp4
+ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" output.mp4
 ```
 
 # FFmpeg 音频
