@@ -131,6 +131,9 @@ ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" -c:v
 
 # 正常编码
 ffmpeg -y -i input.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=50:50[out]" output.mp4
+
+# overlay=x=main_w-120:y=40  （logo在视频位置距离：logo左边距距离视频左边 120 px logo 距离顶部 40 px）
+ffmpeg -y -i cs_16794_FDJC.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=x=main_w-120:y=40[out]" output.mp4
 ```
 
 # FFmpeg 音频
