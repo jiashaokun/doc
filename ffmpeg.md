@@ -146,3 +146,16 @@ ffmpeg -y -i input.mp4 -vf "movie=logo.png [wm]; movie=ct.png[wm1];[c][wm]overla
     ffmpeg -i input.mp4 -i mute.mp3 -map 0:0 -map 1:0 -c copy output.mp4
     # 这里，0：0中的第一个数字是输入文件（0代表视频文件，1代表音频文件），第二个数字是来自该文件的数据流（0，因为每个流只有一个视频或音频） 。这两个流将被映射到一个输出文件，所以第一个视频，然后是音频
 ```
+
+### ffmpeg 视频静音后 添加一段音频
+```shell
+# 1 将视频流进行分离，分离出没有音频的视频
+ffmpeg -i input.mp4 -vcodec copy -an out.mp4   //分离视频流
+# 将 mp3 音频文件转成 wav 
+ffmpeg -i music.mp3 music.wav
+# 或者 阶段相同视频长度的音频
+ffmpeg -i music.wav -ss 0 -t 37 musicshort.wav
+
+# 将音频合并到视频中(从第视频起始合并)
+ffmpeg -i musicshort.wav -i out.mp4 out1.mp4
+```
