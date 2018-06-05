@@ -158,4 +158,7 @@ ffmpeg -i music.wav -ss 0 -t 37 musicshort.wav
 
 # 将音频合并到视频中(从第视频起始合并)
 ffmpeg -i musicshort.wav -i out.mp4 out1.mp4
+
+# 将音频插入到视频的某一个时间
+ffmpeg -y -i mute/cs_16794_FDJC.mp4 -itsoffset 00:00:5 -i yqns.wav -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 o2.mp4
 ```
