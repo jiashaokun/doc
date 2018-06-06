@@ -167,3 +167,8 @@ ffmpeg -y -i mute/cs_16794_FDJC.mp4 -itsoffset 00:00:5 -i yqns.wav -map 0:0 -map
 ```shell
 ffmpeg -y -i o1.mpeg -vf vidstabtransform=smoothing=30 -c:v h264_nvenc o2.mpeg
 ```
+
+## 视频多宫格处理
+```shell
+ffmpeg -re -i yx_test_dd.mp4 -re -i o22.mp4 -filter_complex "nullsrc=size=1280x720 [base]; [0:v] setpts=PTS-STARTPTS,scale=680x400 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=680x480 [upperright]; [base][upperleft] overlay=shortest=1[tmp1];[tmp1][upperright] overlay=shortest=1:x=680" -c:v h264_nvenc o33.mp4
+```
