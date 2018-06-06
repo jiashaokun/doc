@@ -162,3 +162,8 @@ ffmpeg -i musicshort.wav -i out.mp4 out1.mp4
 # 将音频插入到视频的某一个时间
 ffmpeg -y -i mute/cs_16794_FDJC.mp4 -itsoffset 00:00:5 -i yqns.wav -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 o2.mp4
 ```
+
+### 视频防抖动
+```shell
+ffmpeg -y -i o1.mpeg -vf vidstabtransform=smoothing=30 -c:v h264_nvenc o2.mpeg
+```
