@@ -173,7 +173,13 @@ ffmpeg -y -i o1.mpeg -vf vidstabtransform=smoothing=30 -c:v h264_nvenc o2.mpeg
 ffmpeg -re -i yx_test_dd.mp4 -re -i o22.mp4 -filter_complex "nullsrc=size=1280x720 [base]; [0:v] setpts=PTS-STARTPTS,scale=680x400 [upperleft]; [1:v] setpts=PTS-STARTPTS, scale=680x480 [upperright]; [base][upperleft] overlay=shortest=1[tmp1];[tmp1][upperright] overlay=shortest=1:x=680" -c:v h264_nvenc o33.mp4
 ```
 
-### 复制并声称某个时长的音频
+### 复制并生成某个时长的音频
 ```shell
+# 循环 5 遍，长 10 秒
 ffmpeg -stream_loop 5 -i ct.mp3 -t 10 ct_out.mp3
+```
+
+### 将一个 音频 放到 某个静音视频的头部，若音频较短，则生成于视频相同时长的静音进行填补
+```shell
+ffmpeg -i mute/cs_16794_FDJC.mp4 -i ct.mp3 -filter_complex "[1:0]apad" -shortest o1.mp4
 ```
