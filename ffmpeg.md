@@ -183,3 +183,11 @@ ffmpeg -stream_loop 5 -i ct.mp3 -t 10 ct_out.mp3
 ```shell
 ffmpeg -i mute/cs_16794_FDJC.mp4 -i ct.mp3 -filter_complex "[1:0]apad" -shortest o1.mp4
 ```
+
+### 音频固定时间插入音频
+```shell
+# 1 将第一个音频 第一个声道 延迟 n 秒播报 （5秒）
+ffmpeg -y -i cw.mp3 -filter_complex adelay="5000" cwc.mp3
+# 2 将第 主音频 于插入音频混合 
+ffmpeg -y -i ovc.mp3 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 o3.mp3
+```
