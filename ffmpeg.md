@@ -190,4 +190,7 @@ ffmpeg -i mute/cs_16794_FDJC.mp4 -i ct.mp3 -filter_complex "[1:0]apad" -shortest
 ffmpeg -y -i cw.mp3 -filter_complex adelay="5000" cwc.mp3
 # 2 将第 主音频 于插入音频混合 
 ffmpeg -y -i ovc.mp3 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 o3.mp3
+
+# 或者 mp4 直接合并 mp3 
+ffmpeg -y -i o1.mp4 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 -vcodec copy ov3.mp4
 ```
