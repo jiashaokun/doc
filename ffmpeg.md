@@ -194,3 +194,9 @@ ffmpeg -y -i ovc.mp3 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:d
 # 或者 mp4 直接合并 mp3 
 ffmpeg -y -i o1.mp4 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 -vcodec copy ov3.mp4
 ```
+
+### ffmpeg 视频添加文字
+```shell
+#  需要字体 FreeSerif.ttf 文件 [https://fonts2u.com/download/free-serif.family][https://fonts2u.com/free-serif.font]
+ffmpeg -y -i 64862406_525441_1526891425.mp4 -vf "drawtext=fontsize=100:fontfile=FreeSerif.ttf:text='hello world' :fontcolor=white"  o4.mp4
+```
