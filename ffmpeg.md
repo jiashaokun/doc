@@ -71,8 +71,8 @@ ffmpeg -i 33521499_401181_1525176287.mp4 -f segment -strftime 1 -segment_time 60
 > * [按分钟切割]
 
 ### 视频 mp4 转 ts格式
-```python
-subprocess.call(["ffmpeg", "-y", "-i", "/Users/master/yx/yxp/web/video/online/test1.mp4", "-vcodec", "copy", "-acodec", "copy", "-vbsf", "h264_mp4toannexb", "/Users/master/yx/yxp/web/video/online/test1.ts"])
+```shell
+ffmpeg -y -i input.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb out.ts
 ```
 ### 视频合并  多个ts文件视频 合并成 mp4
 ```python
