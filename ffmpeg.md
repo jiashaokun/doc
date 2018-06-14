@@ -225,5 +225,6 @@ ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" 
 
 ### gif 添加到视频 循环播放
 ```shell
+# scale 设置缩放比  n 越大 gif 越小
 ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'scale=iw:ih[a];[1:0]scale=iw/4:-1[wm];[a][wm]overlay=x=50:50:shortest=1' out8.mp4
 ```
