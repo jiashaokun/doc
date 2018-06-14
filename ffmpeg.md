@@ -206,3 +206,10 @@ ffmpeg -y -i 64862406_525441_1526891425.mp4 -vf "drawtext=fontsize=100:fontfile=
 # 同时添加多个文字水印，并且 指定某个文字 在第几秒显示 显示截止到第几秒
 ffmpeg -y -i zs_420714_ZQCS.mp4 -vf "[in]drawtext=fontsize=36:fontfile=PingFang-SC-Regular.ttf:text='正在检查漆膜厚度':x=100:y=100:enable='if(gt(t,10),lt(t,20))':fontcolor=white[a1];[a1]drawtext=fontsize=36:fontfile=PingFang-SC-Regular.ttf:text='正在检查漆膜厚度':x=200:y=200:fontcolor=white [out]"  o4.mp4
 ```
+
+### 图片生成视频
+```shell
+ffmpeg -r 25 -start_number 2 -i img%d.png -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
+# or
+ffmpeg -r 25 -i image%d.png -s 1380x720 -c:v libx264 -qscale 10 -r 30 out.mp4
+```
