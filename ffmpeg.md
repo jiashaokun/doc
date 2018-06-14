@@ -211,5 +211,5 @@ ffmpeg -y -i zs_420714_ZQCS.mp4 -vf "[in]drawtext=fontsize=36:fontfile=PingFang-
 ```shell
 ffmpeg -r 25 -start_number 2 -i img%d.png -c:v libx264 -r 30 -pix_fmt yuv420p out.mp4
 # or
-ffmpeg -r 25 -i image%d.png -s 1380x720 -c:v libx264 -qscale 10 -r 30 out.mp4
+ffmpeg -r 25 -start_number 2 -i img%d.png -s:v 1280x720 -c:v libx264 -profile:v high -r 30 -pix_fmt yuv420p out.mp4
 ```
