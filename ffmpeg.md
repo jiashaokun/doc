@@ -213,3 +213,12 @@ ffmpeg -r 25 -start_number 2 -i img%d.png -c:v libx264 -r 30 -pix_fmt yuv420p ou
 # or
 ffmpeg -r 25 -start_number 2 -i img%d.png -s:v 1280x720 -c:v libx264 -profile:v high -r 30 -pix_fmt yuv420p out.mp4
 ```
+
+### png 转 gif
+```shell
+# 将图片生成 png  img1.png img2.png img3.png
+ffmpeg -i img%d.png -vf palettegen palette.png
+
+# 将图片根据 生成的 png 生成 gif
+ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" -y out.gif
+```
