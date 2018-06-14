@@ -222,3 +222,8 @@ ffmpeg -i img%d.png -vf palettegen palette.png
 # 将图片根据 生成的 png 生成 gif
 ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" -y out.gif
 ```
+
+### gif 添加到视频 循环播放
+```shell
+ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'scale=iw:ih[a];[1:0]scale=iw/4:-1[wm];[a][wm]overlay=x=50:50:shortest=1' out8.mp4
+```
