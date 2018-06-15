@@ -137,6 +137,9 @@ ffmpeg -y -i cs_16794_FDJC.mp4 -vf "movie=logo.png[wm]; [in][wm]overlay=x=main_w
 
 # 插入多张图
 ffmpeg -y -i input.mp4 -vf "movie=logo.png [wm]; movie=ct.png[wm1];[c][wm]overlay=x=100:y=100 [out];[out][wm1] overlay=x=400:y=400" -f mp4 logo.mp4
+
+# 或者
+ffmpeg -i zs_420714_CT.mp4 -i 1.png -i 2.png -filter_complex "overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))'" -y 0.mp4
 ```
 
 # FFmpeg 音频
