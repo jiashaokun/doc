@@ -196,6 +196,9 @@ ffmpeg -y -i ovc.mp3 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:d
 
 # 或者 mp4 直接合并 mp3 
 ffmpeg -y -i o1.mp4 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 -vcodec copy ov3.mp4
+
+# 多个合并
+ffmpeg -i INPUT1 -i INPUT2 -i INPUT3 -filter_complex amix=inputs=3:duration=first:dropout_transition=3 OUTPUT
 ```
 
 ### ffmpeg 视频加文字水印
