@@ -85,11 +85,14 @@ ffmpeg -y -i input.mp4 -vcodec copy -acodec copy -vbsf h264_mp4toannexb out.ts
 ```
 ### 视频合并  多个ts文件视频 合并成 mp4
 ```python
-subprocess.call(["ffmpeg", "-y", "-i", "concat:test.ts|test1.ts", "-acodec", "copy", "-vcodec", "copy", "-absf", "aac_adtstoasc", "out.mp4"])
+ffmpeg -y -i "concat:test.ts|test1.ts" -acodec copy -vcodec copy -absf aac_adtstoasc out.mp4
 ```
 ```shell
 # list.txt 内容 file 'out-1.mp4'
 ffmpeg -f concat -i list.txt -c copy concat.mp4
+
+# or
+ffmpeg -y -i zs_420714_CT.mp4 -ignore_loop 0 -i ICON_01.gif -filter_complex "overlay=x=10:y=10:shortest=1" -vcodec h264_nvenc -acodec copy -f mp4 out.mp4
 ```
 
 ### 视频切割并生成ts文件
@@ -203,7 +206,7 @@ ffmpeg -y -i cw.mp3 -filter_complex adelay="5000" cwc.mp3
 # 2 将第 主音频 于插入音频混合 
 ffmpeg -y -i ovc.mp3 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 o3.mp3
 
-# 或者 mp4 直接合并 mp3 
+# 或者 mp4 直接合并 mp4 
 ffmpeg -y -i o1.mp4 -i cwc.mp3 -filter_complex amix=inputs=2:duration=longest:dropout_transition=3 -vcodec copy ov3.mp4
 
 # 多个合并
