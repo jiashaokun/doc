@@ -52,6 +52,15 @@ ffmpeg -i input.mp4 -c:v h264_nvenc -s 640x480 -b:v 600k output.mp4
 
 ## 视频分割 && 合并
 > * 操作流程 [1. 视频分割成一小段mp4格式小视频 2. 将小视频转为 ts 格式小视频 3. 合并所有ts小视频为 mp4 格式视频]
+
+```shell
+# t.txt 内容
+file 't1.ts'
+file 't2.ts'
+#  视频合并
+ffmpeg -f concat -i t.txt -vcodec h264_nvenc -acodec copy -f mp4 yx_o1.mp4
+```
+
 ## 视频分割 && 合并
 
 ### 按时长分割视频
