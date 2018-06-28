@@ -127,6 +127,7 @@ ffmpeg -y -i input.mp4 -c:v h264_nvenc -vcodec h264_nvenc -s 1280x720 -b:v 2000k
     # 生成随机数
     r = random.randint(0,1)
     os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
+    # 随机使用第r块GPU
     os.environ["CUDA_VISIBLE_DEVICES"] = str(r)
 ```
 > * 使用 GPU 硬编码
