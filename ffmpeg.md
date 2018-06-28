@@ -92,7 +92,7 @@ ffmpeg -y -i "concat:test.ts|test1.ts" -acodec copy -vcodec copy -absf aac_adtst
 ffmpeg -f concat -i list.txt -c copy concat.mp4
 
 # or
-ffmpeg -y -i zs_420714_CT.mp4 -ignore_loop 0 -i ICON_01.gif -filter_complex "overlay=x=10:y=10:shortest=1" -vcodec h264_nvenc -acodec copy -f mp4 out.mp4
+ffmpeg -y -i input.mp4 -ignore_loop 0 -i ICON_01.gif -filter_complex "overlay=x=10:y=10:shortest=1" -vcodec h264_nvenc -acodec copy -f mp4 out.mp4
 ```
 
 ### 视频切割并生成ts文件
@@ -124,8 +124,9 @@ ffmpeg -y -i input.mp4 -c:v h264_nvenc -vcodec h264_nvenc -s 1280x720 -b:v 2000k
 ```
 ### 选择使用GPU
 ```python
+    # 生成随机数
     r = random.randint(0,1)
-    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"   # see issue #152
+    os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
     os.environ["CUDA_VISIBLE_DEVICES"] = str(r)
 ```
 > * 使用 GPU 硬编码
@@ -241,5 +242,5 @@ ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" 
 ### gif 添加到视频 循环播放
 ```shell
 # scale 设置缩放比  n 越大 gif 越小
-ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'scale=iw:ih[a];[1:0]scale=iw/4:-1[wm];[a][wm]overlay=x=50:50:shortest=1' out8.mp4
+ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'overlay=x=100:y=100:shortest=1' out8.mp4
 ```
