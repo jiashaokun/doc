@@ -245,3 +245,15 @@ ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" 
 # scale 设置缩放比  n 越大 gif 越小
 ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'overlay=x=100:y=100:shortest=1' out8.mp4
 ```
+
+### ffmpeg 添加字幕文件
+
+```shell
+ffmpeg -i zs_712837_ZQCS.mp4 -vf subtitles=test.srt -vcodec h264_nvenc -y o3.mp4
+
+# 如果视频文件出现乱码的情况，观察编译过程：[Parsed_subtitles_0 @ 0x2012b40] fontselect: (Arial, 400, 0) -> /usr/share/fonts/lyx/msam10.ttf, 0, PingFangSC
+
+# MMB被这个坑了好长时间 走的是 PingFangSC 字体，找的却是 msam10.ttf 外星文，妈的，骂人，反正我不懂，我就开骂，处理如下
+# cp /usr/share/fonts/lyx/msam10.ttf /usr/share/fonts/lyx/msam10.ttf_base
+# cp ../assets/font/PingFang-SC-Regular.ttf /usr/share/fonts/lyx/msam10.ttf
+```
