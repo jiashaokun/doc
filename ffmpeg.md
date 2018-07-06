@@ -257,3 +257,7 @@ ffmpeg -i zs_712837_ZQCS.mp4 -vf subtitles=test.srt -vcodec h264_nvenc -y o3.mp4
 # cp /usr/share/fonts/lyx/msam10.ttf /usr/share/fonts/lyx/msam10.ttf_base
 # cp ../assets/font/PingFang-SC-Regular.ttf /usr/share/fonts/lyx/msam10.ttf
 ```
+### ffmpeg 同时添加图片和文字水印
+```shell
+ffmpeg -y -i tt.mp4 -i logo.png -filter_complex "[0:v]drawtext=fontfile=PingFang-SC-Regular.ttf:text='测试一下':fontcolor=#FFFFFF:fontsize=36:x=100:y=100[text];[text][1:v]overlay=0:0[out]" -map "[out]" -map 0:a -codec:v libx264 -codec:a copy output.mp4
+```
