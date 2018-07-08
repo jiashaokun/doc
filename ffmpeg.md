@@ -244,6 +244,10 @@ ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" 
 ```shell
 # scale 设置缩放比  n 越大 gif 越小
 ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'overlay=x=100:y=100:shortest=1' out8.mp4
+
+# or
+
+ffmpeg -y -i zs_420714_CT.mp4 -filter_complex 'movie=c_01.png:loop=0[animation];[0:v][animation]overlay=x=100:y=100:shortest=1' out.mp4
 ```
 
 ### ffmpeg 添加字幕文件
