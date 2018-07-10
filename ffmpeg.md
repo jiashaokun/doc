@@ -242,6 +242,7 @@ ffmpeg -v warning -i img%d.png -i palette.png  -lavfi "paletteuse,setpts=6*PTS" 
 
 ### gif 添加到视频 循环播放
 ```shell
+# apng 图片格式必须是 rgba 不能提供 pal8 （png 针图生成 apng 图url[]）
 # scale 设置缩放比  n 越大 gif 越小
 ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'overlay=x=100:y=100:shortest=1' out8.mp4
 
