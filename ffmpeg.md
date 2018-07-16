@@ -178,6 +178,9 @@ ffmpeg -i musicshort.wav -i out.mp4 out1.mp4
 
 # 将音频插入到视频的某一个时间
 ffmpeg -y -i mute/cs_16794_FDJC.mp4 -itsoffset 00:00:5 -i yqns.wav -map 0:0 -map 1:0 -c:v copy -preset ultrafast -async 1 o2.mp4
+
+# 视频一次添加多个语音文件在指定时间（先静音）
+ffmpeg -i input.mp4 -itsoffset 10.555 -i ct.m4a -itsoffset 20.999 -i ct.m4a -itsoffset 70 -i ct.m4a -map 0:1 -map 1:0 -map 2:0 -map 3:0 -c:v copy -preset ultrafast -f mp4 -y out1.mp4
 ```
 
 ### 视频防抖动
