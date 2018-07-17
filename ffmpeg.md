@@ -279,6 +279,6 @@ ffmpeg -y -i tt.mp4 -i logo.png -filter_complex "[0:v]drawtext=fontfile=PingFang
 
 ffmpeg -y -i tt.mp4 -i logo.png -filter_complex "[0:v]drawtext=fontfile=PingFang-SC-Regular.ttf:text='测试一下':fontcolor=#FFFFFF:fontsize=36:x=100:y=100:enable='if(gt(t,5),lt(t,10))'[text];[text][1:v]overlay=0:0:enable='if(gt(t,5),lt(t,10))'[out]" -map "[out]" -map 0:a -codec:v libx264 -codec:a copy output.mp4
 
-# 乱序 (文字和图片水印顺序不固定)
+# 乱序 (文字和图片水印顺序不固定 不支持多个)
 ffmpeg -i test.mp4 -vf "movie=logo.png[w1];drawtext=text='HelloWorld':fontfile=PingFang-SC-Regular.ttf:fontsize=25:x=500:y=500:enable='if(gt(t,10),lt(t,20))':fontcolor=white[w2];[w2][w1]overlay=x=100:y=100:enable='if(gt(t,10),lt(t,20))'" -f mp4 -y out.mp4
 ```
