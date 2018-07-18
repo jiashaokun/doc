@@ -258,6 +258,9 @@ ffmpeg -y -i input.mp4 -ignore_loop 0 -i out1.gif -filter_complex 'overlay=x=100
 # or
 
 ffmpeg -y -i zs_420714_CT.mp4 -filter_complex 'movie=c_01.png:loop=0[animation];[0:v][animation]overlay=x=100:y=100:shortest=1' out.mp4
+
+# exp
+ffmpeg -y -i input.mp4 -ignore_loop 0 -i p1.png -filter_complex '[0:v]scale=iw:ih[a];[1:v]scale=150:98[wm];[a][wm]overlay=x=30:y=30:shortest=1' -preset faster out.mp4
 ```
 
 ### ffmpeg 添加字幕文件
