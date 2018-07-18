@@ -286,7 +286,12 @@ ffmpeg -y -i tt.mp4 -i logo.png -filter_complex "[0:v]drawtext=fontfile=PingFang
 ffmpeg -i test.mp4 -vf "movie=logo.png[w1];drawtext=text='HelloWorld':fontfile=PingFang-SC-Regular.ttf:fontsize=25:x=500:y=500:enable='if(gt(t,10),lt(t,20))':fontcolor=white[w2];[w2][w1]overlay=x=100:y=100:enable='if(gt(t,10),lt(t,20))'" -f mp4 -y out.mp4
 ```
 
-# 同时打入 图片水印 和 字幕
+### 同时打入 图片水印 和 字幕
 ```shell
 ffmpeg -i test.mp4 -i logo.png -i logo.png -filter_complex "overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))', subtitles=tt.srt" out.mp4
+```
+
+### 同时打入 图片水印 字幕 apng
+```shell
+ffmpeg -i test.mp4 -i logo.png -i logo.png -ignore_loop 0 -i ct.apng -filter_complex "overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))', overlay=x=300:300:shortest=1, subtitles=tt.srt" out.mp4
 ```
