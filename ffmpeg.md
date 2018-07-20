@@ -294,4 +294,6 @@ ffmpeg -i test.mp4 -i logo.png -i logo.png -filter_complex "overlay=x=100:y=100:
 ### 同时打入 图片水印 字幕 apng 文字水印
 ```shell
 ffmpeg -i test.mp4 -i logo.png -i logo.png -ignore_loop 0 -i ct.apng -filter_complex "overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))', overlay=x=300:300:shortest=1, subtitles=tt.srt,drawtext=text='hello':fontfile=PingFang-SC-Regular.ttf:x=100:y=100:enable='if(gt(t,10),lt(t,20))':fontcolor=white,drawtext=text='world':fontfile=PingFang-SC-Regular.ttf:x=200:y=200:enable='if(gt(t,10),lt(t,20))':fontcolor=white" out.mp4
+
+ffmpeg -i input.mp4 -ignore_loop 0 -i ct.apng -i p1.png -i p2.png -filter_complex "overlay=x=300:300:shortest=1, overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))', subtitles=txt.srt,drawtext=text='正在检查...':fontfile=siyuan-heiti-normal.ttf:x=100:y=100:enable='if(gt(t,10),lt(t,20))':fontcolor=white,drawtext=text='正在检查...':fontfile=siyuan-heiti-normal.ttf:x=200:y=200:enable='if(gt(t,10),lt(t,20))':fontcolor=white" -af "volume=9" -y -vcodec h264_nvenc o1.mp4
 ```
