@@ -297,3 +297,10 @@ ffmpeg -i test.mp4 -i logo.png -i logo.png -ignore_loop 0 -i ct.apng -filter_com
 
 ffmpeg -i input.mp4 -ignore_loop 0 -i ct.apng -i p1.png -i p2.png -filter_complex "overlay=x=300:300:shortest=1, overlay=x=100:y=100:enable='if(gt(t,5),lt(t,10))',overlay=x=100:y=100:enable='if(gt(t,15),lt(t,20))', subtitles=txt.srt,drawtext=text='正在检查...':fontfile=siyuan-heiti-normal.ttf:x=100:y=100:enable='if(gt(t,10),lt(t,20))':fontcolor=white,drawtext=text='正在检查...':fontfile=siyuan-heiti-normal.ttf:x=200:y=200:enable='if(gt(t,10),lt(t,20))':fontcolor=white" -af "volume=9" -y -vcodec h264_nvenc o1.mp4
 ```
+
+### 视频左右拼接到一个屏幕
+```shell
+ffmpeg -i input.mp4 -i input2.mp4 -filter_complex "[0:v]pad=w=iw*2:h=ih[b];[b][1:v]overlay=x=W/2" -filter_complex amix=inputs=2:duration=first:dropout_transition=2,volume=1 -y out.mp4
+```
+```#
+```
