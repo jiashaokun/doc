@@ -61,6 +61,13 @@ file 't2.ts'
 ffmpeg -f concat -i t.txt -vcodec h264_nvenc -acodec copy -f mp4 yx_o1.mp4
 ```
 
+```shell
+ffmpeg -i /data1/product/v4/assets/video/ct.ts -i com/zs_710587_CT.mp4 -i /data1/product/v4/assets/video/cw.ts -i com/zs_710587_CW.mp4 -filter_complex "[0:0][0:1][1:0][1:1][2:0][2:1][3:0][3:1] concat=n=4:v=1:a=1" -c:v copy -vcodec h264_nvenc -y tt.mp4
+```
+
+>* 上面的命令合并了三种不同格式的文件，FFmpeg concat 过滤器会重新编码它们。注意这是有损压缩。 
+[0:0] [0:1] [1:0] [1:1] [2:0] [2:1] 分别表示第一个输入文件的视频、音频、第二个输入文件的视频、音频、第三个输入文件的视频、音频。concat=n=3:v=1:a=1 表示有三个输入文件，输出一条视频流和一条音频流。[v] [a] 就是得到的视频流和音频流的名字，注意在 bash 等 shell 中需要用引号，防止通配符扩展   [http://www.voidcn.com/article/p-xzdyrfxk-bhs.html]
+
 ## 视频分割 && 合并
 
 ### 按时长分割视频
