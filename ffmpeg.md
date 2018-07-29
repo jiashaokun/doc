@@ -309,5 +309,9 @@ ffmpeg -i input.mp4 -ignore_loop 0 -i ct.apng -i p1.png -i p2.png -filter_comple
 ```shell
 ffmpeg -i input.mp4 -i input2.mp4 -filter_complex "[0:v]pad=w=iw*2:h=ih[b];[b][1:v]overlay=x=W/2" -filter_complex amix=inputs=2:duration=first:dropout_transition=2,volume=1 -y out.mp4
 ```
-```#
+
+### 视频合并并转换 多个 码率
+```shell
+ffmpeg -y -f concat -safe 0 -i video.ts -af volume=9 -s 1280x720 -b 2000k -vcodec h264_nvenc out1.mp4 -af volume=9 -s 1080x720 -b 1200k -vcodec h264_nvenc out2.mp4
+```
 ```
