@@ -314,4 +314,8 @@ ffmpeg -i input.mp4 -i input2.mp4 -filter_complex "[0:v]pad=w=iw*2:h=ih[b];[b][1
 ```shell
 ffmpeg -y -f concat -safe 0 -i video.ts -af volume=9 -s 1280x720 -b 2000k -vcodec h264_nvenc out1.mp4 -af volume=9 -s 1080x720 -b 1200k -vcodec h264_nvenc out2.mp4
 ```
+
+### 合并 未测试
+```shell
+ffmpeg -threads 3 -noautorotate  -max_error_rate 0.99 -fflags +genpts  -y   -loglevel info  -probesize 100000000 -analyzeduration 300000000  -user_agent tmpfs_cache -reconnect 1  -f concat -safe -1 -auto_convert 1  -timeout 30000000 -i "video.txt" -map 0:v? -map 0:a? -vcodec copy  -acodec copy -bsf:a aac_adtstoasc  -f mp4 -movflags +faststart  -threads 6  -metadata description="QNY APD MTS" tmp.mp4
 ```
